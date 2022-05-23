@@ -1,0 +1,42 @@
+#importing libraries
+import numpy as np
+import pandas as pd
+
+#dataset url
+#name = autodata.csv
+#url = https://raw.githubusercontent.com/rohinidevkar/DSBDA/main/autodata.csv
+
+# loading dataset into pandas dataframe
+url_link='autodata.csv'
+df = pd.read_csv(url_link)
+
+#data preprocessing
+df.head()
+
+df.tail()
+
+df.info()
+
+df.describe()
+
+df.shape
+
+#check for missing values
+df.isnull()
+
+df.isnull().sum()
+
+df.notnull()
+
+df.notnull().sum()
+
+df.dtypes
+
+#convert categorical variables into quantitative variables using pandas get_dummies method
+dummy_variable_1=pd.get_dummies(df['aspiration'])
+dummy_variable_1.head()
+
+#insert this into original dataset
+df=pd.concat([df,dummy_variable_1],axis=1)
+df.drop('aspiration',axis=1,inplace=True)
+df.head()
