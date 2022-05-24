@@ -62,3 +62,12 @@ print("Average of peak-rpm:",avg_rpm)
 df["stroke"].replace(np.nan,avg_stroke,inplace=True)
 df["horsepower"].replace(np.nan,avg_hp,inplace=True)
 df["peak-rpm"].replace(np.nan,avg_rpm,inplace=True)
+
+#replace the missing 'num-of-doors' values by the most frequent 
+df["num-of-doors"].replace(np.nan, "four", inplace=True)
+
+# simply drop whole row with NaN in "horsepower-binned" column
+df.dropna(subset=["horsepower-binned"], axis=0, inplace=True)
+
+# reset index, because we droped two rows
+df.reset_index(drop=True, inplace=True)
