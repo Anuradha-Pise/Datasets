@@ -40,3 +40,25 @@ dummy_variable_1.head()
 df=pd.concat([df,dummy_variable_1],axis=1)
 df.drop('aspiration',axis=1,inplace=True)
 df.head()
+
+
+
+
+
+
+
+#replace the missing values by the eman of that column
+#calucate the mean of column
+avg_stroke = df["stroke"].astype("float").mean(axis=0)
+avg_hp = df["horsepower"].astype("float").mean(axis=0)
+avg_rpm = df["peak-rpm"].astype("float").mean(axis=0)
+
+#printing the average value 
+print("Average of Stroke:",avg_stroke)
+print("Average of Horsepower:",avg_hp)
+print("Average of peak-rpm:",avg_rpm)
+
+#replace he Nan value by mean of that column
+df["stroke"].replace(np.nan,avg_stroke,inplace=True)
+df["horsepower"].replace(np.nan,avg_hp,inplace=True)
+df["peak-rpm"].replace(np.nan,avg_rpm,inplace=True)
